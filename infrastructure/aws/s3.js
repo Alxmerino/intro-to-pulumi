@@ -22,11 +22,33 @@ class S3 extends pulumi.ComponentResource {
       tags,
     });
 
+    let bucketPolicy = new aws.s3.BucketPolicy("bucketPolicy", {
+      bucket: S3Bucket.bucket,
+      policy: S3Bucket.arn.apply(this.publicReadPolicyForBucket)
+      // transform the siteBucket.bucket output property
+    });
+
     this.id = S3Bucket.id;
     this.arn = S3Bucket.arn;
     this.domainName = S3Bucket.bucketDomainName;
     this.name = S3Bucket.bucket;
     this.websiteUrl = S3Bucket.websiteEndpoint;
+  }
+
+  publicReadPolicyForBucket(arn) {
+    return JSON.stringify({
+      Version: "2012-10-17",
+      Statement: [{
+        Effect: "Allow",
+        Principal: "*",
+        Action: [
+          "s3:GetObject"
+        ],
+        Resource: [
+          `arn:aws:s3:::${arn}/*` // policy refers to bucket name explicitly
+        ]
+      }]
+    })
   }
 }
 
