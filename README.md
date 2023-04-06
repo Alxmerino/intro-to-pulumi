@@ -56,6 +56,8 @@ const bucketObject = new aws.s3.BucketObject("index.html", {
     - `repository`: Repository to deploy GH Actions
     - `github:token`: Secret GH Token
 4. `pulumi up` 
+5. Deploy using GitHub Actions
+6. Look at Bucket and open website
 ---
 # Vue
 
