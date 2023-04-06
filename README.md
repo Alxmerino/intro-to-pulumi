@@ -14,7 +14,7 @@ export AWS_SECRET_ACCESS_KEY=<YOUR_SECRET_ACCESS_KEY>
 3. Create new Pulumi project
 ```sh
 mkdir infrastructure && cd infrastructure
-pulumi new aws-typescript
+pulumi new aws-javascript
 ```
 4. Deploy Application
 ```sh
