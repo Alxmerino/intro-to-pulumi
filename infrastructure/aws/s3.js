@@ -44,9 +44,8 @@ class S3 extends pulumi.ComponentResource {
         Action: [
           "s3:GetObject"
         ],
-        Resource: [
-          `arn:aws:s3:::${arn}/*` // policy refers to bucket name explicitly
-        ]
+        // policy refers to bucket arn explicitly
+        Resource: [`${arn}/*`]
       }]
     })
   }
